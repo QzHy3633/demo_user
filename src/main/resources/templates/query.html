@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script >
+
+    function del(){
+      if (confirm("您确定要删除吗！")){
+        return true;
+      }else{
+        return false;
+      }
+    }
+
+  </script>
+
+</head>
+<body>
+
+  <p align="center"><a th:href="@{/add.html}">添加</a></p>
+  <form id="deleteEmpForm" >
+    <table border="1" cellpadding="0" cellspacing="0" align="center" >
+      <tr>
+        <th>编号</th>
+        <th>用户名</th>
+        <th>密码</th>
+        <th>性别</th>
+        <th>出生日期</th>
+        <th>地址</th>
+        <th>邮箱</th>
+        <th>状态</th>
+        <th>创建时间</th>
+        <th>修改时间</th>
+        <th>操作</th>
+      </tr>
+      <tr th:each="u:${Ulist}">
+        <td th:text="*{u.id}" ></td>
+        <td th:text="*{u.mobile}" ></td>
+        <td th:text="*{u.password}" ></td>
+        <td th:text="*{u.sex}" ></td>
+        <td th:text="*{u.birthdate}" ></td>
+        <td th:text="*{u.address}" ></td>
+        <td th:text="*{u.email}" ></td>
+        <td th:text="*{u.state}" ></td>
+        <td th:text="*{u.create_Time}" ></td>
+        <td th:text="*{u.update_Time}" ></td>
+        <td>
+          <a class="button border-red" href="#" th:href="@{/user/deleteById(id=*{u.id})}"
+             onclick="return del()" th:value="*{u.id}"  >
+            删除
+          </a>
+          <a th:href="@{findById(id=*{u.id})}">修改</a>
+
+        </td>
+      </tr>
+    </table>
+  </form>
+
+</body>
+</html>
